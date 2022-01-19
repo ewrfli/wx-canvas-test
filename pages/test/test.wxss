@@ -1,0 +1,8 @@
+/* pages/test/test.wxss */
+canvas {
+  width: 350px;
+  height: 450px;
+  display: block;
+  position: relative;
+  border: 1px solid red;
+}

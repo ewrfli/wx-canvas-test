@@ -1,0 +1,8 @@
+<!--pages/test/test.wxml-->
+<text>pages/test/test.wxml</text>
+<canvas canvas-id="myCanvas"></canvas>	
+
+<button class='m-btn-share' bindtap='getcav'>canvas</button>
+<button class='m-btn-share' bindtap='downimg'>保存图片</button>
+<!-- <img id="img1" src="../../img/1-2.jpg" alt="" srcset=""/> -->
+<image id="img1" src="{{localImageUrl}}"/>
