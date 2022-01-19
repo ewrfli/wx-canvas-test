@@ -4,7 +4,7 @@
 
 <view class="button-div">
   <button bindtap='getcav'>canvas</button>
-  <button bindtap='downimg'>保存图片</button>
+  <button bindtap='downimg'>绘制图片</button>
   <button bindtap='downimg'>截屏</button>
 </view>
 <view class="button-div">

@@ -16,7 +16,6 @@ Page({
     console.log('getcav')
     const ctx = wx.createCanvasContext('myCanvas')
     
-   
     ctx.setFillStyle("#eeeeee"); // 绘制背景
     ctx.fillRect(0, 0,300, 300);
      ctx.setFillStyle('red') // 设置填充色为红色
@@ -33,6 +32,12 @@ Page({
     //     ctx.drawImage(res.tempFilePaths[0], 20, 150, 150, 100)
     //   }
     // })
+
+    // let image = new Image()
+    // console.log('image',image)
+
+    ctx.fillStyle = ctx.createPattern(this.data.iconimg, 'no-repeat') // 性质相当于css中的background-image
+		ctx.fillRect(10, 10, 400, 400) // 最终渲染的位置
 
 
   
@@ -58,7 +63,7 @@ Page({
     ctx.draw();   // 显示绘制
   },
 
-  downimg: function(){//把canvas画板保存成图片
+  downimg: function(){//把canvas画板保存绘制成图片
     let _this = this
     wx.canvasToTempFilePath({ 
       canvasId: 'myCanvas',
@@ -79,10 +84,9 @@ Page({
       },
     })
   },
-  saveShareImg: function () {
+
+  saveShareImg: function () {//把canvas画板图片 保存到相册
     let _this = this
-    // 有则直接保存
-    // openStatus = true
     wx.saveImageToPhotosAlbum({
       filePath:  _this.data.canvasToTempFilePath,
       success() {
@@ -91,12 +95,14 @@ Page({
           icon: 'none',
           duration: 2000
         })
+        console.log(_this.data.canvasToTempFilePath)
       },
       fail() {
         wx.showToast({
           title: '保存失败',
           icon: 'none'
         })
+        console.log(_this.data.canvasToTempFilePath)
       }
     })
   },
