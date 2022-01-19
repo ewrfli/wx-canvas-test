@@ -8,20 +8,38 @@ Page({
    */
   data: {
     localImageUrl: 'http://imgo2o.shikee.com/goods/2019/10/17/201910171144361688.jpg',
+    iconimg:'https://2019miniapp.atonefestival.com/2021/highlight/icon/cn.png',
     canvasToTempFilePath: ''
   },
 
   getcav: function () {
     console.log('getcav')
     const ctx = wx.createCanvasContext('myCanvas')
-    ctx.setFillStyle('red') // 设置填充色为红色
-    // 画一个矩形，填充为红色
-    // ctx.fillRect(10, 20, 150, 75) // ctx.fillRect(x, y, width, height)
+    
+   
+    ctx.setFillStyle("#eeeeee"); // 绘制背景
+    ctx.fillRect(0, 0,300, 300);
+     ctx.setFillStyle('red') // 设置填充色为红色
+    ctx.font = "bold 20px sans-serif";   //font 字体样式
 
+    ctx.fillText("fillTextxxx", 20, 40);    //填充文字
+   
+    ctx.strokeText("strokeText", 20, 60, 100); //描边文本
+   
+    console.log(ctx.measureText("measureTextxxxxxxxxxx").width)  //测量文本宽度
+
+    //  wx.chooseImage({ //选择图片显示
+    //   success: function(res){
+    //     ctx.drawImage(res.tempFilePaths[0], 20, 150, 150, 100)
+    //   }
+    // })
+
+
+  
+    // ctx.fillRect(10, 20, 150, 75) // (x, y, width, height)矩形，填充为红色
     // 笑脸设置线条颜色和线宽
-    ctx.setStrokeStyle('#000a97')
-    ctx.setLineWidth(2)
-
+    // ctx.setStrokeStyle('#000a97')
+    // ctx.setLineWidth(2)
     // // 移动画笔坐标位置，绘制（外部大圆）
     // ctx.moveTo(160, 100)
     // ctx.arc(100, 100, 60, 0, 2 * Math.PI, true)
@@ -34,35 +52,15 @@ Page({
     // ctx.moveTo(125, 80)
     // ctx.arc(120, 80, 5, 0, 2 * Math.PI, true)
 
-    //font 字体样式
-    ctx.font = "bold 22px sans-serif";
-
-    //填充文字
-    ctx.fillText("fillTextxxx", 20, 20);
-    //描边文本
-    ctx.strokeText("strokeText", 20, 40, 100);
-
-    //测量文本宽度
-    console.log(ctx.measureText("measureTextxxxxxxxxxx").width)
-
-    //图片
-    ctx.drawImage('../../img/1-2.jpg',50,150);
-    // wx.chooseImage({
-    //   success: function(res){
-    //     ctx.drawImage(res.tempFilePaths[0], 20, 150, 150, 100)
-    //     ctx.draw()
-    //   }
-    // })
-
-
     // 画出当前路径的边框
-    ctx.stroke()
-    ctx.draw()
+    // ctx.stroke()
+
+    ctx.draw();   // 显示绘制
   },
 
-  downimg: function(){
+  downimg: function(){//把canvas画板保存成图片
     let _this = this
-    wx.canvasToTempFilePath({ //保存图片
+    wx.canvasToTempFilePath({ 
       canvasId: 'myCanvas',
       success: function (res) {
         _this.data.canvasToTempFilePath = res.tempFilePath // 返回的图片地址保存到一个全局变量里
@@ -81,6 +79,28 @@ Page({
       },
     })
   },
+  saveShareImg: function () {
+    let _this = this
+    // 有则直接保存
+    // openStatus = true
+    wx.saveImageToPhotosAlbum({
+      filePath:  _this.data.canvasToTempFilePath,
+      success() {
+        wx.showToast({
+          title: '图片保存成功，快去分享到朋友圈吧~',
+          icon: 'none',
+          duration: 2000
+        })
+      },
+      fail() {
+        wx.showToast({
+          title: '保存失败',
+          icon: 'none'
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

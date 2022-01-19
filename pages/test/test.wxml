@@ -1,8 +1,16 @@
 <!--pages/test/test.wxml-->
 <text>pages/test/test.wxml</text>
-<canvas canvas-id="myCanvas"></canvas>	
+<canvas canvas-id="myCanvas"></canvas>
 
-<button class='m-btn-share' bindtap='getcav'>canvas</button>
-<button class='m-btn-share' bindtap='downimg'>保存图片</button>
+<view class="button-div">
+  <button bindtap='getcav'>canvas</button>
+  <button bindtap='downimg'>保存图片</button>
+  <button bindtap='downimg'>截屏</button>
+</view>
+<view class="button-div">
+  <button bindtap='getcav'>获取头像</button>
+  <button bindtap='downimg'>获取二维码</button>
+  <button bindtap='saveShareImg'>分享保存画板</button>
+</view>
 <!-- <img id="img1" src="../../img/1-2.jpg" alt="" srcset=""/> -->
-<image id="img1" src="{{localImageUrl}}"/>
+<image id="img1" src="{{localImageUrl}}" />

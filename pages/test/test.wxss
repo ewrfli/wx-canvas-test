@@ -6,3 +6,14 @@ canvas {
   position: relative;
   border: 1px solid red;
 }
+.button-div {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0px;
+}
+button {
+  font-size: 12px;
+  width: 10px;
+  height: 40px;
+  background-color: royalblue;
+}
