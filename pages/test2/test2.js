@@ -14,6 +14,8 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUseGetUserProfile: false,
+    AccessToken: '',
+    canvas: null
   },
 
   getcav: function () {
@@ -26,6 +28,7 @@ Page({
       })
       .exec((res) => {
         const canvas = res[0].node
+        this.data.canvas = res[0].node
         const ctx = canvas.getContext('2d')
         const dpr = wx.getSystemInfoSync().pixelRatio
         canvas.width = res[0].width * dpr
@@ -53,7 +56,8 @@ Page({
   downimg: function () { //把canvas画板保存绘制成图片
     let _this = this
     wx.canvasToTempFilePath({
-      canvasId: 'myCanvas',
+      // canvasId: 'myCanvas',
+      canvas: this.data.canvas, //（canvas type="2d" 时使用该属性）。
       success: function (res) {
         _this.data.canvasToTempFilePath = res.tempFilePath // 返回的图片地址保存到一个全局变量里
         // this.setData({
