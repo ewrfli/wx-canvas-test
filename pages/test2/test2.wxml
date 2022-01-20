@@ -1,7 +1,7 @@
 <!--pages/test/test.wxml-->
 <view class="container">
 
-  <canvas canvas-id="myCanvas"></canvas>
+  <canvas id="myCanvas" type="2d" canvas-id="myCanvas"></canvas>
 
   <view class="button-div">
     <button bindtap='getcav'>canvas</button>
